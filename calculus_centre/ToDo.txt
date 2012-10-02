@@ -1,0 +1,56 @@
+Homework 1
+Un centro di elaborazione dati (CED) dispone di un insieme di risorse di calcolo a disposizione degli utenti autorizzati.
+Ogni risorsa e' descritta tramite un codice identificativo, una data di acquisto ed una collocazione.
+Le risorse disponibili sono:
+1. workstation, ognuna identificata da 
+1. tipologia di cpu (ad esempio P4-3GHZ, AMD-K6-2.8GHZ),
+2. quantità di RAM (espressa in Gb, ad esempio 2,8,32)
+3. spazio disponibile corrente su HD (espresso in Gb, ad esempio 100, 500, 1000)
+4. un elenco di software installati (ad esempio "Microsoft Office", "Autodesk AutoCAD", "Pixar RenderMan")
+2. stampante, ognuna identificata da 
+1. tipologia (laser, inkjet, sublimazione)
+2. quantita' inchiostro residua (in percentuale)
+3. quantita' fogli disponibili (si ipotizza solo formato A4)
+3. plotter, ognuno identificato da: 
+1. formato massimo ammesso (A0, A1...)
+2. livello corrente di ognuna delle quattro cartucce (ciano, magenta, giallo, nero), ognuno in percentuale
+
+Deve essere possibile creare tutte le tipologie di risorse, fornendo contestualmente le caratteristiche di ognuna. Tutte le risorse devono potere essere ricollocate in una posizione (specificata tramite una stringa).
+Per la workstation, deve essere possibile aggiornare lo spazio residuo su disco, così come la lista dei software installati (aggiunta, modifica, rimozione del singolo elemento).
+Per la stampante, deve essere possibile aggiornare sia la quantita' di inchiostro residua che la quantita' di fogli correntemente disponibili.
+Per il plotter infine, deve essere possibile aggiornare i quattro livelli delle cartucce.
+Per le tre tipologie di risorse, si deve inoltre prevedere un controllo che ne indichi la reale fruibilita', in particolare:
+una workstation e' disponibile se ha ancora spazio residuo su disco e se possiede software installati, altrimenti e' non disponibile;
+una stampante e' disponibile se ha ancora inchiostro e fogli
+un plotter è disponibile se ha almeno 3 cartucce su 4 con inchiostro residuo
+
+Scrivere il codice in Java per definire (creare) una generica risorsa e le tre tipologie di risorse descritte in precedenza. Modellare attributi, metodi, costruttori, gerarchie di ereditarieta'.
+Scrivere poi una classe simulazione che crei un array di risorse, potendo essere le risorse di tipo differente (workstation, stampante, plotter). Le risorse possono essere specificate sulla riga di comando o tramite lettura da tastiera. Si devono poi invocare tre metodi (x,y,z) in sequenza, ed infine stampare il contenuto dell'array caricato in precedenza.
+Determinazione dei valori x,y e z
+X = somma delle cifre presenti nel numero di matricola del primo componente
+Y = somma delle cifre presenti nel numero di matricola del secondo componente
+Z = numero lettere nome1 + numero lettere cognome 1 + numero lettere nome 2+ numero lettere cognome 2
+I valori x,y, e z vanno calcolati effettuando l'operazione modulo 15
+
+Esempio calcolo di z
+Primo componente Paperino Paolino secondo componente Pico De Paperis
+Z = 8 + 4 + 7 + 9 = 28
+z = 28 % 15 = 13
+Se i valori x, y e z non sono distinti inviare una mail al docente per l'assegnazione dei metodi da implementare.
+Elenco delle funzion:
+1) stampare il numero delle workstation
+2) stampare il numero delle workstation disponibili
+3) stampare il numero delle workstation con almeno 4GB di RAM e 20GB di spazio disco
+***4) stampare il numero delle stampanti disponibili raggruppate per tipologia (ad esempio 3 laser, 4 inkjet, 6 sublimazione)
+5) stampare il numero dei plotter in grado di stampare in b/n e quelli in grado di stampare a colori
+6) stampare il valore medio di inchiostro presente nelle stampanti
+7) stampare i codici di tutte le stampanti con meno di 10 fogli
+8) stampare il codice e la collocazione dei plotter non disponibili
+***9) stampare la quantita' totale di fogli presente nelle stampanti
+10) caricare di una quantita' assegnata di fogli tutte le stampanti di un tipo specificato
+11) costruire un nuovo array con tutte le workstation disponibil
+***12)costruire un nuovo array con tutte le stampanti laser
+13) costruire un nuovo array con tutti i plotter di un formato massimo assegnato
+14) stampare la collocazione della stampante piu' utilizzata (valore minimo di inchiostro corrente residuo)
+0) stampare il codice del plotter con piu' inchiostro (valore medio)
+
