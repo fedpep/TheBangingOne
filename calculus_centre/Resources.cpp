@@ -30,7 +30,7 @@ void Resource::ToString(void) const
 
 /* Resource - base class method implementation END */
 
-/* Cartridge - base class method implementation BEGIN */
+/* Cartridge - class method implementation BEGIN */
 
 Cartridge::Cartridge()
 {
@@ -47,7 +47,7 @@ string Cartridge::GetColor(void)
 	return this->color;
 }
 
-int Cartridge::GetInkQuantity(void)
+int Cartridge::GetInkQuantity(void) const
 {
 	return this->inkQuantity;
 }
@@ -57,19 +57,19 @@ void Cartridge::RefillInk(void)
 	this->inkQuantity=100;
 }
 
-void Cartridge::ToString(void)
+void Cartridge::ToString(void) const
 {
 	cout<<"cart color " << color << " ink:" << inkQuantity << endl;
 }
 
-void Cartridge::ToString(int index)
+void Cartridge::ToString(int index) const
 {
 	cout<<"cart "<< index <<" " << color << " ink:" << inkQuantity << endl;
 }
 
-/* Cartridge - base class method implementation END */
+/* Cartridge - class method implementation END */
 
-/* Plotter - base class method implementation BEGIN */
+/* Plotter - class method implementation BEGIN */
 
 Plotter::Plotter(string& date_bought , int table , int room, string& max_format):Resource(date_bought,table,room)
 {
@@ -106,7 +106,78 @@ bool Plotter::isAvailable(void) const
 	return is_avail;
 }
 
-/* Plotter - base class method implementation END */
+/* Plotter - class method implementation END */
 
 
+/* Printer - class method implementation BEGIN */
+
+Printer::Printer(string& date_bought , int table , int room , string& type):Resource(date_bought,table,room),cartridge(*new string("black"))
+{
+	this->type=type;
+	this->sheets=100;
+}
+
+void Printer::rechargePaper(int sheets)
+{
+	this->sheets=sheets;
+
+}
+
+int Printer::getSheets(void) const
+{
+	return this->sheets;
+
+}
+
+void Printer::ToString(void) const
+{
+	Resource::ToString();
+	cout<<" type" << type << endl;
+
+	this->cartridge.ToString();
+
+}
+
+bool Printer::isAvailable(void) const
+{
+	if(this->cartridge.GetInkQuantity()>0 && this->getSheets()>0)
+		return true;
+
+	return false;
+}
+
+/* Printer - class method implementation END */
+
+
+/* Workstation - class method implementation BEGIN */
+
+Workstation::Workstation(string& date_bought , int table , int room, string& cpu , int ram_mb , int hdd_mb):Resource(date_bought,table,room)
+{
+	this->cpu=cpu;
+	this->ram_mb=ram_mb;
+	this->hdd_mb=hdd_mb;
+}
+
+void Workstation::addSoftware(string& sw_name)
+{
+	this->software_list.push_back(sw_name);
+
+}
+
+void Workstation::ToString(void) const
+{
+	Resource::ToString();
+	cout<<" HDD (MB):" << hdd_mb << endl;
+
+}
+
+bool Workstation::isAvailable(void) const
+{
+	if(this->software_list.size()!=0 && this->hdd_mb>0)
+		return true;
+
+	return false;
+}
+
+/* Workstation - class method implementation END */
 
